@@ -20,6 +20,7 @@
 import type { ComponentType } from 'react';
 
 // <custom:intent-imports>
+import { IconDeviceMobile, IconArrowBackUp } from '@tabler/icons-react';
 // </custom:intent-imports>
 
 export interface IntentLink {
@@ -42,6 +43,8 @@ export interface IntentLink {
 
 export const INTENTS: IntentLink[] = [
   // <custom:intents>
+  { path: '/intents/geraet-ausleihen', label: { de: 'Gerät ausleihen', en: 'Lend a device' }, icon: IconDeviceMobile, description: 'Verfügbares Gerät an einen Mitarbeiter ausleihen' },
+  { path: '/intents/geraet-zurueckgeben', label: { de: 'Gerät zurückgeben', en: 'Return a device' }, icon: IconArrowBackUp, description: 'Offene Ausleihe abschließen und Gerät zurücknehmen' },
   // </custom:intents>
 ];
 
@@ -52,7 +55,7 @@ export const INTENTS: IntentLink[] = [
  * purpose — a scaffold update resets it to false (self-healing if Phase 2
  * never ran).
  */
-export const INTENTS_PENDING = true;
+export const INTENTS_PENDING = false;
 
 /**
  * When the Phase-1 bundle was deployed (ISO, set by the service together with
