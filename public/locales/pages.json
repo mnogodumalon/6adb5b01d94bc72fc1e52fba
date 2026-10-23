@@ -1,0 +1,36 @@
+{
+  "pages": {
+    "en": {
+      "Alle {0} Geräte sind im Lager.": "All {0} devices are in stock.",
+      "Als Nächstes zurück: {0} von {1}.": "Next to be returned: {0} from {1}.",
+      "Als zurückgegeben melden": "Mark as returned",
+      "Ausgeben": "Issue",
+      "Ausgeliehen": "Checked out",
+      "Bald fällig": "Due soon",
+      "Defekt": "Defective",
+      "Defekte Geräte": "Defective devices",
+      "Erstes Gerät aufnehmen": "Add first device",
+      "Gerät": "Device",
+      "Gerät ausleihen": "Check out device",
+      "Geräte nach Typ": "Devices by type",
+      "Keine defekten Geräte — alles einsatzbereit.": "No defective devices — everything is ready for use.",
+      "Keine offenen Ausleihen mit Rückgabetermin.": "No open loans with a return date.",
+      "Noch keine Geräte erfasst — nimm das erste iPad, iPhone oder Android-Handy auf.": "No devices recorded yet — add the first iPad, iPhone or Android phone.",
+      "Repariert": "Repaired",
+      "Richte dein Testgeräte-Lager ein.": "Set up your test device inventory.",
+      "Unbekannt": "Unknown",
+      "Verfügbar": "Available",
+      "Zurück": "Back",
+      "bei": "at",
+      "bis": "until",
+      "{0} muss noch ein Gerät zurückgeben.": "{0} still has to return a device.",
+      "{0} müssen noch Geräte zurückgeben.": "{0} still have to return devices.",
+      "{0} — Status geändert": "{0} — status changed",
+      "{0} — als repariert markiert": "{0} — marked as repaired",
+      "{0} — ausgegeben": "{0} — issued",
+      "{0} — zurückgegeben": "{0} — returned",
+      "überfällig seit {0}": "overdue since {0}"
+    }
+  },
+  "v": 1
+}

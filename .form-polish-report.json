@@ -1,0 +1,30 @@
+{
+  "entities": {
+    "Mitarbeiter": {
+      "placeholders_set": 4,
+      "defaults_keys": [],
+      "computed_keys": [],
+      "reason": "Reine Stammdaten ohne numerische Felder, daher keine Formeln."
+    },
+    "Geräte": {
+      "placeholders_set": 10,
+      "defaults_keys": [
+        "zustand"
+      ],
+      "computed_keys": [],
+      "reason": "Reine Stammdaten ohne Datumspaare oder Preisfelder, daher keine Formeln."
+    },
+    "Ausleihen": {
+      "placeholders_set": 7,
+      "defaults_keys": [
+        "ausleihdatum",
+        "rueckgabe_geplant",
+        "status"
+      ],
+      "computed_keys": [
+        "_ausleihe_dauer_tage"
+      ],
+      "reason": "Die geplante Ausleihdauer in Tagen wird als virtueller Wert aus dem Datumspaar berechnet, ein Preis über applookup existiert nicht."
+    }
+  }
+}

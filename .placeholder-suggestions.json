@@ -1,0 +1,29 @@
+{
+  "MitarbeiterDialog.tsx": {
+    "mitarbeiter_vorname": "z. B. Anna",
+    "mitarbeiter_nachname": "z. B. Schmidt",
+    "email": "z. B. anna.schmidt@firma.de",
+    "abteilung": "z. B. Entwicklung, Vertrieb"
+  },
+  "GeraeteDialog.tsx": {
+    "bezeichnung": "z. B. Test-iPad 01",
+    "hersteller": "z. B. Apple, Samsung",
+    "modell": "z. B. iPhone 15 Pro",
+    "betriebssystem_version": "z. B. iOS 17.4",
+    "seriennummer": "z. B. F2LXK0ABCD12",
+    "imei": "z. B. 356938035643809",
+    "bildschirmgroesse": "z. B. 6.1",
+    "speicher_gb": "z. B. 128",
+    "standort": "z. B. Testlabor, Schrank 2",
+    "notizen": "Besonderheiten zum Gerät"
+  },
+  "AusleihenDialog.tsx": {
+    "geraet": "Welches Gerät?",
+    "mitarbeiter": "Welcher Mitarbeiter?",
+    "ausleihdatum": "Wann wird ausgeliehen?",
+    "rueckgabe_geplant": "Bis wann wird es zurückgegeben?",
+    "rueckgabe_tatsaechlich": "Wann kam es zurück?",
+    "verwendungszweck": "z. B. Release-Test",
+    "bemerkung": "Weitere Hinweise zur Ausleihe"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "language": "de",
+  "understanding": {
+    "summary": "Die App verwaltet Testgeräte wie iPads, iPhones und Android-Handys. Sie zeigt, welche Geräte vorhanden sind, in welchem Zustand sie sind und wer sie gerade ausgeliehen hat.",
+    "roles": [
+      "Geräteverwalter",
+      "Mitarbeiter"
+    ],
+    "main_tasks": [
+      "Geräte erfassen und pflegen",
+      "Gerät an einen Mitarbeiter ausleihen",
+      "Rückgabe von Geräten festhalten",
+      "Überfällige Ausleihen im Blick behalten"
+    ],
+    "platform_roles": [
+      {
+        "persona": "Geräteverwalter",
+        "role": "administrator",
+        "apps": [
+          "geraete",
+          "mitarbeiter",
+          "ausleihen"
+        ]
+      },
+      {
+        "persona": "Mitarbeiter",
+        "role": "standard",
+        "apps": [
+          "ausleihen",
+          "geraete",
+          "mitarbeiter"
+        ]
+      }
+    ]
+  },
+  "flows": [
+    {
+      "slug": "geraet-ausleihen",
+      "label": {
+        "de": "Gerät ausleihen",
+        "en": "Lend a device"
+      },
+      "description": "Ein verfügbares Gerät wird an einen Mitarbeiter ausgeliehen. Das Gerät darf nicht gleichzeitig anderweitig ausgeliehen sein.",
+      "priority": "must",
+      "writes": [
+        {
+          "entity": "ausleihen",
+          "op": "create",
+          "when": "always",
+          "fields": {
+            "geraet": "picked",
+            "mitarbeiter": "picked",
+            "ausleihdatum": "derived:today",
+            "rueckgabe_geplant": "user",
+            "verwendungszweck": "user",
+            "bemerkung": "user",
+            "status": "fixed:ausgeliehen"
+          },
+          "needs": {}
+        }
+      ],
+      "required": [],
+      "brief": "# Flow `geraet-ausleihen` — Gerät ausleihen\nEin verfügbares Gerät wird an einen Mitarbeiter ausgeliehen. Das Gerät darf nicht gleichzeitig anderweitig ausgeliehen sein.\n\n## Your hook — import it, never rebuild what it owns\n`import { useGeraetAusleihenFlow } from '@/lib/journey/flows/GeraetAusleihen';` — generated from the Schreibliste below. It OWNS the form(s), one record search per picked field (columns and filter from the plan) and the submit plan with every fixed and derived value. You compose: `flow.forms.<entity>` for <Bound>/<Field>, `{...flow.picks.<field>.select} {...flow.pick('<field>')}` (or `flow.pickMany` for a multi pick) for <EntitySelectStep>, `flow.validateStep(n)` in StepNav.onNext, `flow.submit` + `flow.formList` for SummaryStep/SuccessStep, `flow.reset()`; what the hook does not own reads through its door `flow.port` — availability `useOccupancy(flow.port, '<entity>', { resource })`, a count `useRecordCount(flow.port, …)` — never import servicePort next to the hook. Options: `steps` (field → step), `items` (how a hit reads, per pick: geraet, mitarbeiter), `initial`, `messages`. The hook's docblock in .lane-context.md shows the exact call. Never import servicePort, useStepForm, useJourneySubmit, useRecordSearch or useDashboardData in this page — check-intents refuses a page that uses the hook and any of them.\n\n## Steps (in this order)\n1. Gerät aus der Liste der freien Geräte wählen\n2. Mitarbeiter wählen\n3. Ausleihdatum und geplantes Rückgabedatum sowie Verwendungszweck angeben\n4. Ausleihe speichern\n\n## Schreibliste — the ONLY writes this flow makes (the gate compares your plan steps with this list)\n- creates `ausleihen`:\n    - `geraet`: from the record the user picks in this flow\n    - `mitarbeiter`: from the record the user picks in this flow\n    - `ausleihdatum`: derived: today() — set it in the plan step, never ask\n    - `rueckgabe_geplant`: the user enters it (bind it through the layer: form.field/…)\n    - `verwendungszweck`: the user enters it (bind it through the layer: form.field/…)\n    - `bemerkung`: the user enters it (bind it through the layer: form.field/…)\n    - `status`: fixed value `ausgeliehen` — set it in the plan step's values, never ask\n\n## Reads\n- `geraete` columns bezeichnung, geraetetyp, hersteller, modell, zustand, standort\n- `mitarbeiter` columns mitarbeiter_vorname, mitarbeiter_nachname, abteilung\n\n## Checks BEFORE the write (block the submit with the message when they fail)\n- custom (resource=`ausleihen.geraet`, status=`ausleihen.status`, rule=`Das Gerät hat keine andere Ausleihe mit Status ausgeliehen oder überfällig`) — message: „Dieses Gerät ist bereits ausgeliehen.“\n\n## Success page\n- shows: `ausleihen.geraet`, `ausleihen.mitarbeiter`, `ausleihen.rueckgabe_geplant`\n- next flows to offer: `geraet-zurueckgeben`\n\n## Never write these — another flow or a tool owns them\n- `ausleihen.rueckgabe_tatsaechlich` (owner: intent `geraet-zurueckgeben`)\n- `geraete.zustand` (owner: intent `geraet-zurueckgeben`)\n- `geraete.standort` (owner: intent `geraet-zurueckgeben`)\n"
+    },
+    {
+      "slug": "geraet-zurueckgeben",
+      "label": {
+        "de": "Gerät zurückgeben",
+        "en": "Return a device"
+      },
+      "description": "Eine offene Ausleihe wird abgeschlossen: Rückgabedatum wird gesetzt und der Status auf zurückgegeben gestellt.",
+      "priority": "must",
+      "writes": [
+        {
+          "entity": "ausleihen",
+          "op": "update",
+          "when": "always",
+          "fields": {
+            "rueckgabe_tatsaechlich": "derived:today",
+            "status": "fixed:zurueckgegeben",
+            "bemerkung": "user"
+          },
+          "needs": {}
+        },
+        {
+          "entity": "geraete",
+          "op": "update",
+          "when": "optional",
+          "fields": {
+            "zustand": "user",
+            "standort": "user"
+          },
+          "needs": {}
+        }
+      ],
+      "required": [],
+      "brief": "# Flow `geraet-zurueckgeben` — Gerät zurückgeben\nEine offene Ausleihe wird abgeschlossen: Rückgabedatum wird gesetzt und der Status auf zurückgegeben gestellt.\n\n## Your hook — import it, never rebuild what it owns\n`import { useGeraetZurueckgebenFlow } from '@/lib/journey/flows/GeraetZurueckgeben';` — generated from the Schreibliste below. It OWNS the form(s), one record search per picked field (columns and filter from the plan) and the submit plan with every fixed and derived value. You compose: `flow.forms.<entity>` for <Bound>/<Field>, `{...flow.picks.<field>.select} {...flow.pick('<field>')}` (or `flow.pickMany` for a multi pick) for <EntitySelectStep>, `flow.validateStep(n)` in StepNav.onNext, `flow.submit` + `flow.formList` for SummaryStep/SuccessStep, `flow.reset()`; what the hook does not own reads through its door `flow.port` — availability `useOccupancy(flow.port, '<entity>', { resource })`, a count `useRecordCount(flow.port, …)` — never import servicePort next to the hook. Options: `steps` (field → step), `items` (how a hit reads, per pick), `initial`, `messages`. The hook's docblock in .lane-context.md shows the exact call. This flow CHANGES a record of `ausleihen`: `{...flow.picks.ausleihen.select} {...flow.pick('ausleihen')}` picks it, the hook prefills the form with its current values and updates THAT record — never a create step, never a list from useDashboardData. This flow CHANGES a record of `geraete`: `{...flow.picks.geraete.select} {...flow.pick('geraete')}` picks it, the hook prefills the form with its current values and updates THAT record — never a create step, never a list from useDashboardData. Never import servicePort, useStepForm, useJourneySubmit, useRecordSearch or useDashboardData in this page — check-intents refuses a page that uses the hook and any of them.\n\n## Steps (in this order)\n1. Offene Ausleihe wählen\n2. Rückgabedatum bestätigen\n3. Bemerkung zum Zustand ergänzen\n4. Speichern\n\n## Schreibliste — the ONLY writes this flow makes (the gate compares your plan steps with this list)\n- updates `ausleihen`:\n    - `rueckgabe_tatsaechlich`: derived: today() — set it in the plan step, never ask\n    - `status`: fixed value `zurueckgegeben` — set it in the plan step's values, never ask\n    - `bemerkung`: the user enters it (bind it through the layer: form.field/…)\n- updates `geraete` (only when the flow needs it):\n    - `zustand`: the user enters it (bind it through the layer: form.field/…)\n    - `standort`: the user enters it (bind it through the layer: form.field/…)\n\n## Reads\n- `ausleihen` columns geraet, mitarbeiter, ausleihdatum, rueckgabe_geplant, status\n\n## Success page\n- shows: `ausleihen.status`, `ausleihen.rueckgabe_tatsaechlich`\n- next flows to offer: `geraet-ausleihen`\n\n## Never write these — another flow or a tool owns them\n- `ausleihen.geraet` (owner: intent `geraet-ausleihen`)\n- `ausleihen.mitarbeiter` (owner: intent `geraet-ausleihen`)\n- `ausleihen.ausleihdatum` (owner: intent `geraet-ausleihen`)\n- `ausleihen.rueckgabe_geplant` (owner: intent `geraet-ausleihen`)\n- `ausleihen.verwendungszweck` (owner: intent `geraet-ausleihen`)\n"
+    }
+  ],
+  "public_pages": [],
+  "tools": [
+    {
+      "id": "ueberfaellige-ausleihen-markieren",
+      "purpose": "Täglich werden alle Ausleihen mit Status „Ausgeliehen“, deren geplantes Rückgabedatum vorbei ist und die noch kein tatsächliches Rückgabedatum haben, auf „Überfällig“ gesetzt."
+    },
+    {
+      "id": "uebersicht-per-mail",
+      "purpose": "Täglich wird eine Sammelmail an den Schlüsselinhaber geschickt, wenn Ausleihen überfällig sind. Die Mail listet Gerät, Mitarbeiter und geplantes Rückgabedatum."
+    }
+  ],
+  "covered_by_platform": [
+    {
+      "wish": "Testgeräte erfassen und organisieren",
+      "feature": "record_form"
+    },
+    {
+      "wish": "Übersicht über alle Geräte (iPads, iPhones, Android-Handys)",
+      "feature": "list_page"
+    },
+    {
+      "wish": "Geräte nach Typ auswerten",
+      "feature": "distribution_view"
+    },
+    {
+      "wish": "Geräte suchen und filtern",
+      "feature": "search_filter"
+    }
+  ],
+  "ownership": {
+    "ausleihen": {
+      "geraet": "intent:geraet-ausleihen",
+      "mitarbeiter": "intent:geraet-ausleihen",
+      "ausleihdatum": "intent:geraet-ausleihen",
+      "rueckgabe_geplant": "intent:geraet-ausleihen",
+      "verwendungszweck": "intent:geraet-ausleihen",
+      "bemerkung": "intent:geraet-zurueckgeben",
+      "status": "tool:ueberfaellige-ausleihen-markieren",
+      "rueckgabe_tatsaechlich": "intent:geraet-zurueckgeben"
+    },
+    "geraete": {
+      "zustand": "intent:geraet-zurueckgeben",
+      "standort": "intent:geraet-zurueckgeben"
+    }
+  },
+  "dashboard": {
+    "focus": [
+      "Aktuell ausgeliehene Geräte",
+      "Überfällige Ausleihen",
+      "Geräte nach Gerätetyp",
+      "Defekte Geräte"
+    ],
+    "hints": [
+      "Überfällige Rückgaben hervorheben",
+      "Verteilung der Geräte nach Typ zeigen",
+      "Offene Ausleihen mit Mitarbeiter und geplantem Rückgabedatum auflisten"
+    ],
+    "wishes": []
+  }
+}
