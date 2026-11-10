@@ -313,7 +313,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
         <Label htmlFor="bezeichnung">{fieldLabel('geraete', 'bezeichnung')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="bezeichnung"
-          placeholder="z. B. Test-iPad 01"
+          placeholder=""
           value={fields.bezeichnung ?? ''}
           onChange={e => setFields(f => ({ ...f, bezeichnung: e.target.value }))}
           required
@@ -403,7 +403,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
         <Label htmlFor="hersteller">{fieldLabel('geraete', 'hersteller')}</Label>
         <Input
           id="hersteller"
-          placeholder="z. B. Apple, Samsung"
+          placeholder=""
           value={fields.hersteller ?? ''}
           onChange={e => setFields(f => ({ ...f, hersteller: e.target.value }))}
         />
@@ -414,7 +414,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
         <Label htmlFor="modell">{fieldLabel('geraete', 'modell')}</Label>
         <Input
           id="modell"
-          placeholder="z. B. iPhone 15 Pro"
+          placeholder=""
           value={fields.modell ?? ''}
           onChange={e => setFields(f => ({ ...f, modell: e.target.value }))}
         />
@@ -425,7 +425,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
         <Label htmlFor="betriebssystem_version">{fieldLabel('geraete', 'betriebssystem_version')}</Label>
         <Input
           id="betriebssystem_version"
-          placeholder="z. B. iOS 17.4"
+          placeholder=""
           value={fields.betriebssystem_version ?? ''}
           onChange={e => setFields(f => ({ ...f, betriebssystem_version: e.target.value }))}
         />
@@ -436,7 +436,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
         <Label htmlFor="seriennummer">{fieldLabel('geraete', 'seriennummer')}</Label>
         <Input
           id="seriennummer"
-          placeholder="z. B. F2LXK0ABCD12"
+          placeholder=""
           value={fields.seriennummer ?? ''}
           onChange={e => setFields(f => ({ ...f, seriennummer: e.target.value }))}
         />
@@ -447,7 +447,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
         <Label htmlFor="imei">{fieldLabel('geraete', 'imei')}</Label>
         <Input
           id="imei"
-          placeholder="z. B. 356938035643809"
+          placeholder=""
           value={fields.imei ?? ''}
           onChange={e => setFields(f => ({ ...f, imei: e.target.value }))}
         />
@@ -462,7 +462,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
           inputMode="decimal"
           step="any"
           {...numberInputProps(formEnhancements, 'bildschirmgroesse')}
-          placeholder="z. B. 6.1"
+          placeholder=""
           value={fields.bildschirmgroesse !== undefined ? fields.bildschirmgroesse : (computedValues['bildschirmgroesse'] ?? '')}
           onChange={e => setFields(f => ({ ...f, bildschirmgroesse: clampNumberValue(formEnhancements, 'bildschirmgroesse', e.target.value) }))}
         />
@@ -477,7 +477,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
           inputMode="decimal"
           step="any"
           {...numberInputProps(formEnhancements, 'speicher_gb')}
-          placeholder="z. B. 128"
+          placeholder=""
           value={fields.speicher_gb !== undefined ? fields.speicher_gb : (computedValues['speicher_gb'] ?? '')}
           onChange={e => setFields(f => ({ ...f, speicher_gb: clampNumberValue(formEnhancements, 'speicher_gb', e.target.value) }))}
         />
@@ -547,7 +547,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
         <Label htmlFor="standort">{fieldLabel('geraete', 'standort')}</Label>
         <Input
           id="standort"
-          placeholder="z. B. Testlabor, Schrank 2"
+          placeholder=""
           value={fields.standort ?? ''}
           onChange={e => setFields(f => ({ ...f, standort: e.target.value }))}
         />
@@ -558,7 +558,7 @@ export function GeraeteDialog({ open, onClose, onSubmit, defaultValues, recordId
         <Label htmlFor="notizen">{fieldLabel('geraete', 'notizen')}</Label>
         <Textarea
           id="notizen"
-          placeholder="Besonderheiten zum Gerät"
+          placeholder=""
           value={fields.notizen ?? ''}
           onChange={e => setFields(f => ({ ...f, notizen: e.target.value }))}
           rows={3}

@@ -1,7 +1,7 @@
 /**
  * useGeraetAusleihenFlow — the plumbing of the flow « Gerät ausleihen », generated from the plan.
  *
- * Writes `ausleihen`: asks `geraet`, `mitarbeiter`, `rueckgabe_geplant`, `verwendungszweck`, `bemerkung`; sets `ausleihdatum`, `status` itself.
+ * Writes `ausleihen`: asks `geraet`, `bemerkung`, `mitarbeiter`, `verwendungszweck`, `rueckgabe_geplant`; sets `status`, `ausleihdatum` itself.
  * The hook OWNS: the form(s) with exactly these fields and the plan's required
  * ingredients, one record search per picked field (columns and filter from
  * the plan), and the submit plan with its fixed and derived values. A page
@@ -16,15 +16,15 @@
  *   messages  the sentence for an empty required field, per field
  *
  *   const flow = useGeraetAusleihenFlow({
- *     steps: { geraet: 1, mitarbeiter: 2, rueckgabe_geplant: 3, verwendungszweck: 3, bemerkung: 3 },
+ *     steps: { geraet: 1, mitarbeiter: 2, bemerkung: 3, verwendungszweck: 3, rueckgabe_geplant: 3 },
  *     items: { geraet: r => ({ id: r.id, title: fieldText(r, 'bezeichnung') }) },
  *   });
  *   <IntentWizardShell forms={flow.forms} draftKey={flow.draftKey} …>
  *     <EntitySelectStep {...flow.picks.geraet.select} {...flow.pick('geraet')} />
  *     <EntitySelectStep {...flow.picks.mitarbeiter.select} {...flow.pick('mitarbeiter')} />
- *     <Bound form={flow.forms.ausleihen} name="rueckgabe_geplant" />
- *     <Bound form={flow.forms.ausleihen} name="verwendungszweck" />
  *     <Bound form={flow.forms.ausleihen} name="bemerkung" />
+ *     <Bound form={flow.forms.ausleihen} name="verwendungszweck" />
+ *     <Bound form={flow.forms.ausleihen} name="rueckgabe_geplant" />
  *     <StepNav onNext={() => flow.validateStep(n)} />
  *     {!flow.submit.done && <SummaryStep forms={flow.formList} submit={flow.submit} />}
  *     {flow.submit.result && <SuccessStep result={flow.submit.result} forms={flow.formList} submit={flow.submit} />}
@@ -91,14 +91,15 @@ function hasValues(form: StepForm): boolean {
 export function useGeraetAusleihenFlow(options: GeraetAusleihenFlowOptions = {}) {
   const steps = { ...DEFAULT_STEPS, ...(options.steps ?? {}) } as Record<string, number>;
   const ausleihen = useStepForm('ausleihen', {
-    fields: ["geraet", "mitarbeiter", "rueckgabe_geplant", "verwendungszweck", "bemerkung"],
-    steps: only(steps, ["geraet", "mitarbeiter", "rueckgabe_geplant", "verwendungszweck", "bemerkung"]) as Record<string, number>,
-    initial: only(options.initial as FormValues | undefined, ["geraet", "mitarbeiter", "rueckgabe_geplant", "verwendungszweck", "bemerkung"]),
-    messages: only(options.messages as Record<string, string> | undefined, ["geraet", "mitarbeiter", "rueckgabe_geplant", "verwendungszweck", "bemerkung"]),
+    fields: ["geraet", "bemerkung", "mitarbeiter", "verwendungszweck", "rueckgabe_geplant"],
+    steps: only(steps, ["geraet", "bemerkung", "mitarbeiter", "verwendungszweck", "rueckgabe_geplant"]) as Record<string, number>,
+    initial: only(options.initial as FormValues | undefined, ["geraet", "bemerkung", "mitarbeiter", "verwendungszweck", "rueckgabe_geplant"]),
+    messages: only(options.messages as Record<string, string> | undefined, ["geraet", "bemerkung", "mitarbeiter", "verwendungszweck", "rueckgabe_geplant"]),
   });
   const forms: GeraetAusleihenForms = { ausleihen };
+  // the editor of a list is not a record of its own: the review and the success
+  // page read the entries (PlanStep.review), never the half-filled editor
   const formList: StepForm[] = [ausleihen];
-
   // The owner's rules after the build (intent-policies.json): a fixed value
   // for a field this flow sets itself, a narrower or wider pick — read at
   // render time, so a change works on the running application.
@@ -138,8 +139,8 @@ export function useGeraetAusleihenFlow(options: GeraetAusleihenFlowOptions = {})
     {
       key: 'ausleihen', entity: 'ausleihen', form: ausleihen, primary: true,
       values: (): FormValues => ({
-        ausleihdatum: policyFixedValue('ausleihen', 'ausleihdatum') ?? todayIso(),
         status: policyFixedValue('ausleihen', 'status') ?? "ausgeliehen",
+        ausleihdatum: policyFixedValue('ausleihen', 'ausleihdatum') ?? todayIso(),
       }),
 
       // the review shows what this step sets itself — changeable on „Deine Anwendung“, not here

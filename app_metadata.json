@@ -8,6 +8,8 @@
       "main": false,
       "controls": {
         "mitarbeiter_vorname": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae63c53f3e006fef82b/controls/mitarbeiter_vorname",
           "identifier": "mitarbeiter_vorname",
           "label": "Vorname",
           "type": "string",
@@ -20,9 +22,12 @@
           "in_text": true,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "mitarbeiter_nachname": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae63c53f3e006fef82b/controls/mitarbeiter_nachname",
           "identifier": "mitarbeiter_nachname",
           "label": "Nachname",
           "type": "string",
@@ -35,9 +40,12 @@
           "in_text": true,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "email": {
+          "kind": "emailcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae63c53f3e006fef82b/controls/email",
           "identifier": "email",
           "label": "E-Mail",
           "type": "string",
@@ -50,9 +58,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "telefon": {
+          "kind": "telcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae63c53f3e006fef82b/controls/telefon",
           "identifier": "telefon",
           "label": "Telefon",
           "type": "string",
@@ -65,9 +76,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "abteilung": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae63c53f3e006fef82b/controls/abteilung",
           "identifier": "abteilung",
           "label": "Abteilung",
           "type": "string",
@@ -80,7 +94,8 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         }
       }
     },
@@ -90,6 +105,8 @@
       "main": false,
       "controls": {
         "bezeichnung": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/bezeichnung",
           "identifier": "bezeichnung",
           "label": "Bezeichnung",
           "type": "string",
@@ -102,9 +119,12 @@
           "in_text": true,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "geraetetyp": {
+          "kind": "lookupradiocontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/geraetetyp",
           "identifier": "geraetetyp",
           "label": "Gerätetyp",
           "type": "lookup",
@@ -118,15 +138,50 @@
           "in_structured_search": null,
           "in_fulltext_search": true,
           "in_expert_search": true,
+          "translations": null,
           "lookup_data": {
             "ipad": "iPad",
             "iphone": "iPhone",
             "android_handy": "Android-Handy",
             "android_tablet": "Android-Tablet",
             "sonstiges": "Sonstiges"
+          },
+          "lookup_items": {
+            "ipad": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "iPad",
+              "translations": null
+            },
+            "iphone": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "iPhone",
+              "translations": null
+            },
+            "android_handy": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Android-Handy",
+              "translations": null
+            },
+            "android_tablet": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Android-Tablet",
+              "translations": null
+            },
+            "sonstiges": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Sonstiges",
+              "translations": null
+            }
           }
         },
         "hersteller": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/hersteller",
           "identifier": "hersteller",
           "label": "Hersteller",
           "type": "string",
@@ -139,9 +194,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "modell": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/modell",
           "identifier": "modell",
           "label": "Modell",
           "type": "string",
@@ -154,9 +212,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "betriebssystem_version": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/betriebssystem_version",
           "identifier": "betriebssystem_version",
           "label": "Betriebssystem und Version",
           "type": "string",
@@ -169,9 +230,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "seriennummer": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/seriennummer",
           "identifier": "seriennummer",
           "label": "Seriennummer",
           "type": "string",
@@ -184,9 +248,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": null,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "imei": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/imei",
           "identifier": "imei",
           "label": "IMEI",
           "type": "string",
@@ -199,9 +266,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": null,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "bildschirmgroesse": {
+          "kind": "numbercontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/bildschirmgroesse",
           "identifier": "bildschirmgroesse",
           "label": "Bildschirmgröße (Zoll)",
           "type": "number",
@@ -215,9 +285,12 @@
           "in_structured_search": null,
           "in_fulltext_search": null,
           "in_expert_search": true,
+          "translations": null,
           "precision": null
         },
         "speicher_gb": {
+          "kind": "numbercontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/speicher_gb",
           "identifier": "speicher_gb",
           "label": "Speicherkapazität (GB)",
           "type": "number",
@@ -231,9 +304,12 @@
           "in_structured_search": null,
           "in_fulltext_search": null,
           "in_expert_search": true,
+          "translations": null,
           "precision": null
         },
         "zustand": {
+          "kind": "lookupselectcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/zustand",
           "identifier": "zustand",
           "label": "Zustand",
           "type": "lookup",
@@ -247,14 +323,43 @@
           "in_structured_search": null,
           "in_fulltext_search": null,
           "in_expert_search": true,
+          "translations": null,
           "lookup_data": {
             "neuwertig": "Neuwertig",
             "gut": "Gut",
             "gebrauchsspuren": "Gebrauchsspuren",
             "defekt": "Defekt"
+          },
+          "lookup_items": {
+            "neuwertig": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Neuwertig",
+              "translations": null
+            },
+            "gut": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Gut",
+              "translations": null
+            },
+            "gebrauchsspuren": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Gebrauchsspuren",
+              "translations": null
+            },
+            "defekt": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Defekt",
+              "translations": null
+            }
           }
         },
         "standort": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/standort",
           "identifier": "standort",
           "label": "Standort",
           "type": "string",
@@ -267,9 +372,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": null,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "notizen": {
+          "kind": "textareacontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/controls/notizen",
           "identifier": "notizen",
           "label": "Notizen",
           "type": "string",
@@ -282,7 +390,8 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": null,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         }
       }
     },
@@ -292,12 +401,14 @@
       "main": false,
       "controls": {
         "geraet": {
+          "kind": "applookupselectcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5aea0fed217a8d9982fe/controls/geraet",
           "identifier": "geraet",
           "label": "Gerät",
           "type": "applookup",
           "subtype": "select",
           "fulltype": "applookup/select",
-          "description": "A reference to a LivingApp record from the target lookup app 'Geräte' with the id `6adb5ae94d1c51b80332f839` (or `null`/`None`).\n\nThe field value will be a valid record URL in the form `https://my.living-apps.de/rest/apps/6adb5ae94d1c51b80332f839/records/<record-id>` (or `null`/`None`).\n\nWhen writing, either pass a record URL through exactly as this API returned it, or send the portable relative form `/apps/6adb5ae94d1c51b80332f839/records/<record-id>`. Other equivalent record-URL forms are accepted as well.\n\nDisplayed as single-select field in HTML pages.",
+          "description": "A reference to a LivingApp record from the target lookup app 'Geräte' with the id `6adb5ae94d1c51b80332f839` (or `null`/`None`).\n\nThe field value will be a valid record URL in the form `https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839/records/<record-id>` (or `null`/`None`).\n\nWhen writing, either pass a record URL through exactly as this API returned it, or send the portable relative form `/apps/6adb5ae94d1c51b80332f839/records/<record-id>`. Other equivalent record-URL forms are accepted as well.\n\nDisplayed as single-select field in HTML pages.",
           "required": true,
           "in_list": true,
           "in_mobile_list": true,
@@ -305,15 +416,19 @@
           "in_structured_search": null,
           "in_fulltext_search": true,
           "in_expert_search": true,
-          "lookup_app": "https://my.living-apps.de/rest/apps/6adb5ae94d1c51b80332f839"
+          "translations": null,
+          "lookup_app": "https://my.living-apps.de/rest/v1/apps/6adb5ae94d1c51b80332f839",
+          "on_delete": null
         },
         "mitarbeiter": {
+          "kind": "applookupselectcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5aea0fed217a8d9982fe/controls/mitarbeiter",
           "identifier": "mitarbeiter",
           "label": "Mitarbeiter",
           "type": "applookup",
           "subtype": "select",
           "fulltype": "applookup/select",
-          "description": "A reference to a LivingApp record from the target lookup app 'Mitarbeiter' with the id `6adb5ae63c53f3e006fef82b` (or `null`/`None`).\n\nThe field value will be a valid record URL in the form `https://my.living-apps.de/rest/apps/6adb5ae63c53f3e006fef82b/records/<record-id>` (or `null`/`None`).\n\nWhen writing, either pass a record URL through exactly as this API returned it, or send the portable relative form `/apps/6adb5ae63c53f3e006fef82b/records/<record-id>`. Other equivalent record-URL forms are accepted as well.\n\nDisplayed as single-select field in HTML pages.",
+          "description": "A reference to a LivingApp record from the target lookup app 'Mitarbeiter' with the id `6adb5ae63c53f3e006fef82b` (or `null`/`None`).\n\nThe field value will be a valid record URL in the form `https://my.living-apps.de/rest/v1/apps/6adb5ae63c53f3e006fef82b/records/<record-id>` (or `null`/`None`).\n\nWhen writing, either pass a record URL through exactly as this API returned it, or send the portable relative form `/apps/6adb5ae63c53f3e006fef82b/records/<record-id>`. Other equivalent record-URL forms are accepted as well.\n\nDisplayed as single-select field in HTML pages.",
           "required": true,
           "in_list": true,
           "in_mobile_list": true,
@@ -321,9 +436,13 @@
           "in_structured_search": null,
           "in_fulltext_search": true,
           "in_expert_search": true,
-          "lookup_app": "https://my.living-apps.de/rest/apps/6adb5ae63c53f3e006fef82b"
+          "translations": null,
+          "lookup_app": "https://my.living-apps.de/rest/v1/apps/6adb5ae63c53f3e006fef82b",
+          "on_delete": null
         },
         "ausleihdatum": {
+          "kind": "datecontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5aea0fed217a8d9982fe/controls/ausleihdatum",
           "identifier": "ausleihdatum",
           "label": "Ausleihdatum",
           "type": "date",
@@ -336,9 +455,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "rueckgabe_geplant": {
+          "kind": "datecontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5aea0fed217a8d9982fe/controls/rueckgabe_geplant",
           "identifier": "rueckgabe_geplant",
           "label": "Geplantes Rückgabedatum",
           "type": "date",
@@ -351,9 +473,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "rueckgabe_tatsaechlich": {
+          "kind": "datecontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5aea0fed217a8d9982fe/controls/rueckgabe_tatsaechlich",
           "identifier": "rueckgabe_tatsaechlich",
           "label": "Tatsächliches Rückgabedatum",
           "type": "date",
@@ -366,9 +491,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "verwendungszweck": {
+          "kind": "textcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5aea0fed217a8d9982fe/controls/verwendungszweck",
           "identifier": "verwendungszweck",
           "label": "Verwendungszweck",
           "type": "string",
@@ -381,9 +509,12 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": null,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         },
         "status": {
+          "kind": "lookupselectcontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5aea0fed217a8d9982fe/controls/status",
           "identifier": "status",
           "label": "Status",
           "type": "lookup",
@@ -397,14 +528,43 @@
           "in_structured_search": null,
           "in_fulltext_search": null,
           "in_expert_search": true,
+          "translations": null,
           "lookup_data": {
             "angefragt": "Angefragt",
             "ausgeliehen": "Ausgeliehen",
             "zurueckgegeben": "Zurückgegeben",
             "ueberfaellig": "Überfällig"
+          },
+          "lookup_items": {
+            "angefragt": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Angefragt",
+              "translations": null
+            },
+            "ausgeliehen": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Ausgeliehen",
+              "translations": null
+            },
+            "zurueckgegeben": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Zurückgegeben",
+              "translations": null
+            },
+            "ueberfaellig": {
+              "kind": "lookupitem",
+              "url": null,
+              "label": "Überfällig",
+              "translations": null
+            }
           }
         },
         "bemerkung": {
+          "kind": "textareacontrol",
+          "url": "https://my.living-apps.de/rest/v1/apps/6adb5aea0fed217a8d9982fe/controls/bemerkung",
           "identifier": "bemerkung",
           "label": "Bemerkung",
           "type": "string",
@@ -417,7 +577,8 @@
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": null,
-          "in_expert_search": true
+          "in_expert_search": true,
+          "translations": null
         }
       }
     }

@@ -378,7 +378,7 @@ export function AusleihenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="geraet">{fieldLabel('ausleihen', 'geraet')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="geraet"
-          placeholder="Welches Gerät?"
+          placeholder=""
           items={geraeteListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.bezeichnung ?? r.record_id),
@@ -398,7 +398,7 @@ export function AusleihenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="mitarbeiter">{fieldLabel('ausleihen', 'mitarbeiter')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="mitarbeiter"
-          placeholder="Welcher Mitarbeiter?"
+          placeholder=""
           items={mitarbeiterListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.mitarbeiter_vorname ?? r.record_id),
@@ -418,7 +418,7 @@ export function AusleihenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="ausleihdatum">{fieldLabel('ausleihen', 'ausleihdatum')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <DatePicker
           id="ausleihdatum"
-          placeholder="Wann wird ausgeliehen?"
+          placeholder=""
           mode="date"
           value={fields.ausleihdatum ?? null}
           onChange={v => setFields(f => ({ ...f, ausleihdatum: v ?? undefined }))}
@@ -434,7 +434,7 @@ export function AusleihenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="rueckgabe_geplant">{fieldLabel('ausleihen', 'rueckgabe_geplant')}</Label>
         <DatePicker
           id="rueckgabe_geplant"
-          placeholder="Bis wann wird es zurückgegeben?"
+          placeholder=""
           mode="date"
           value={fields.rueckgabe_geplant ?? null}
           onChange={v => setFields(f => ({ ...f, rueckgabe_geplant: v ?? undefined }))}
@@ -446,7 +446,7 @@ export function AusleihenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="rueckgabe_tatsaechlich">{fieldLabel('ausleihen', 'rueckgabe_tatsaechlich')}</Label>
         <DatePicker
           id="rueckgabe_tatsaechlich"
-          placeholder="Wann kam es zurück?"
+          placeholder=""
           mode="date"
           value={fields.rueckgabe_tatsaechlich ?? null}
           onChange={v => setFields(f => ({ ...f, rueckgabe_tatsaechlich: v ?? undefined }))}
@@ -458,7 +458,7 @@ export function AusleihenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="verwendungszweck">{fieldLabel('ausleihen', 'verwendungszweck')}</Label>
         <Input
           id="verwendungszweck"
-          placeholder="z. B. Release-Test"
+          placeholder=""
           value={fields.verwendungszweck ?? ''}
           onChange={e => setFields(f => ({ ...f, verwendungszweck: e.target.value }))}
         />
@@ -531,7 +531,7 @@ export function AusleihenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="bemerkung">{fieldLabel('ausleihen', 'bemerkung')}</Label>
         <Textarea
           id="bemerkung"
-          placeholder="Weitere Hinweise zur Ausleihe"
+          placeholder=""
           value={fields.bemerkung ?? ''}
           onChange={e => setFields(f => ({ ...f, bemerkung: e.target.value }))}
           rows={3}

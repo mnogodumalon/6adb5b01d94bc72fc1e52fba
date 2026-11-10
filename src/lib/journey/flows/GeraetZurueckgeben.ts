@@ -1,7 +1,7 @@
 /**
  * useGeraetZurueckgebenFlow — the plumbing of the flow « Gerät zurückgeben », generated from the plan.
  *
- * Changes `ausleihen`: the record to change is picked (`flow.pick('ausleihen')`), the form is prefilled with its values; asks `bemerkung`; sets `rueckgabe_tatsaechlich`, `status` itself.
+ * Changes `ausleihen`: the record to change is picked (`flow.pick('ausleihen')`), the form is prefilled with its values; asks `bemerkung`; sets `status`, `rueckgabe_tatsaechlich` itself.
 Changes `geraete` (only when the person fills it): the record to change is picked (`flow.pick('geraete')`), the form is prefilled with its values; asks `zustand`, `standort`.
  * The hook OWNS: the form(s) with exactly these fields and the plan's required
  * ingredients, one record search per picked field (columns and filter from
@@ -31,7 +31,7 @@ Changes `geraete` (only when the person fills it): the record to change is picke
  *     {flow.submit.result && <SuccessStep result={flow.submit.result} forms={flow.formList} submit={flow.submit} />}
  *   </IntentWizardShell>
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useStepForm, useJourneySubmit, useRecordSearch,
   fieldText, fieldLookup, fieldLookups, fieldNumber, fieldDate, fieldRef,
@@ -109,8 +109,9 @@ export function useGeraetZurueckgebenFlow(options: GeraetZurueckgebenFlowOptions
     messages: only(options.messages as Record<string, string> | undefined, ["zustand", "standort"]),
   });
   const forms: GeraetZurueckgebenForms = { ausleihen, geraete };
+  // the editor of a list is not a record of its own: the review and the success
+  // page read the entries (PlanStep.review), never the half-filled editor
   const formList: StepForm[] = [ausleihen, geraete];
-
   // The owner's rules after the build (intent-policies.json): a fixed value
   // for a field this flow sets itself, a narrower or wider pick — read at
   // render time, so a change works on the running application.
@@ -156,8 +157,8 @@ export function useGeraetZurueckgebenFlow(options: GeraetZurueckgebenFlowOptions
         ? { key: 'target:ausleihen', label: entityLabel('ausleihen'), value: picks.ausleihen.labelOf(ausleihenTargetId) ?? ausleihenTargetId, step: steps.ausleihen }
         : undefined,
       values: (): FormValues => ({
-        rueckgabe_tatsaechlich: policyFixedValue('ausleihen', 'rueckgabe_tatsaechlich') ?? todayIso(),
         status: policyFixedValue('ausleihen', 'status') ?? "zurueckgegeben",
+        rueckgabe_tatsaechlich: policyFixedValue('ausleihen', 'rueckgabe_tatsaechlich') ?? todayIso(),
       }),
 
       // the review shows what this step sets itself — changeable on „Deine Anwendung“, not here
@@ -199,6 +200,21 @@ export function useGeraetZurueckgebenFlow(options: GeraetZurueckgebenFlowOptions
       get record(): JourneyRecord | undefined { return geraeteTargetId ? picks.geraete.recordOf(geraeteTargetId) : undefined; },
     },
   };
+  // Opened for one record — `#/intents/geraet-zurueckgeben?record=<id>`, the dashboard's
+  // flowActionFor(): that record is the one to change. Loaded, taken into the
+  // pick and selected — when this flow may change it at all (the pick's rule).
+  const [linkedId] = useState(() => new URLSearchParams(window.location.hash.split('?')[1] ?? '').get('record'));
+  useEffect(() => {
+    if (!linkedId) return;
+    let on = true;
+    void servicePort.get('ausleihen', linkedId).then(rec => {
+      if (!on || !rec || !((r: JourneyRecord) => ["ausgeliehen", "ueberfaellig"].includes(fieldLookup(r, "status")?.key ?? ''))(rec)) return;
+      picks.ausleihen.adopt(rec);
+      targets.ausleihen.onSelect(rec.id);
+    }).catch(() => undefined);
+    return () => { on = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once per link
+  }, [linkedId]);
   /** Props for a single-record pick step: {...flow.picks.x.select} {...flow.pick('x')} */
   const pick = (field: GeraetZurueckgebenFieldKey) => {
     if (field in targets) {

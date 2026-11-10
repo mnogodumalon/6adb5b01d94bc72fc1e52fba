@@ -289,7 +289,7 @@ export function MitarbeiterDialog({ open, onClose, onSubmit, defaultValues, reco
         <Label htmlFor="mitarbeiter_vorname">{fieldLabel('mitarbeiter', 'mitarbeiter_vorname')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="mitarbeiter_vorname"
-          placeholder="z. B. Anna"
+          placeholder=""
           value={fields.mitarbeiter_vorname ?? ''}
           onChange={e => setFields(f => ({ ...f, mitarbeiter_vorname: e.target.value }))}
           required
@@ -304,7 +304,7 @@ export function MitarbeiterDialog({ open, onClose, onSubmit, defaultValues, reco
         <Label htmlFor="mitarbeiter_nachname">{fieldLabel('mitarbeiter', 'mitarbeiter_nachname')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="mitarbeiter_nachname"
-          placeholder="z. B. Schmidt"
+          placeholder=""
           value={fields.mitarbeiter_nachname ?? ''}
           onChange={e => setFields(f => ({ ...f, mitarbeiter_nachname: e.target.value }))}
           required
@@ -321,7 +321,7 @@ export function MitarbeiterDialog({ open, onClose, onSubmit, defaultValues, reco
           id="email"
           type="email"
           inputMode="email"
-          placeholder="z. B. anna.schmidt@firma.de"
+          placeholder=""
           value={fields.email ?? ''}
           onChange={e => setFields(f => ({ ...f, email: e.target.value }))}
         />
@@ -345,7 +345,7 @@ export function MitarbeiterDialog({ open, onClose, onSubmit, defaultValues, reco
         <Label htmlFor="abteilung">{fieldLabel('mitarbeiter', 'abteilung')}</Label>
         <Input
           id="abteilung"
-          placeholder="z. B. Entwicklung, Vertrieb"
+          placeholder=""
           value={fields.abteilung ?? ''}
           onChange={e => setFields(f => ({ ...f, abteilung: e.target.value }))}
         />

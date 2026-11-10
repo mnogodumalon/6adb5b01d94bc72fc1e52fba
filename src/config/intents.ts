@@ -43,8 +43,8 @@ export interface IntentLink {
 
 export const INTENTS: IntentLink[] = [
   // <custom:intents>
-  { path: '/intents/geraet-ausleihen', label: { de: 'Gerät ausleihen', en: 'Lend a device' }, icon: IconDeviceMobile, description: 'Verfügbares Gerät an einen Mitarbeiter ausleihen' },
-  { path: '/intents/geraet-zurueckgeben', label: { de: 'Gerät zurückgeben', en: 'Return a device' }, icon: IconArrowBackUp, description: 'Offene Ausleihe abschließen und Gerät zurücknehmen' },
+  { path: '/intents/geraet-ausleihen', label: { de: 'Gerät ausleihen', en: 'Lend a device' }, icon: IconDeviceMobile, description: { de: 'Verfügbares Gerät an einen Mitarbeiter ausleihen', en: 'Loan an available device to an employee' } },
+  { path: '/intents/geraet-zurueckgeben', label: { de: 'Gerät zurückgeben', en: 'Return a device' }, icon: IconArrowBackUp, description: { de: 'Offene Ausleihe abschließen und Gerät zurücknehmen', en: 'Complete open loan and take back device' } },
   // </custom:intents>
 ];
 
@@ -64,5 +64,5 @@ export const INTENTS_PENDING = false;
  * pulsing "werden erstellt …" in every deployed Phase-1 bundle forever — no
  * code path redeploys Phase 1 without the flag (live 03.09.2026).
  */
-export const INTENTS_PENDING_SINCE: string | null = '2026-10-23T13:03:40+00:00';
+export const INTENTS_PENDING_SINCE: string | null = null;
 export const PENDING_MAX_MINUTES = 30;
